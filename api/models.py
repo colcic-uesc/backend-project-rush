@@ -30,6 +30,9 @@ class Skill(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
 
+    def __str__(self):
+        return self.title
+
 
 class Student(models.Model):
     registration = models.CharField(max_length=100, unique=True)
