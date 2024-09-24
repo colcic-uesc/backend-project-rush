@@ -1,10 +1,12 @@
 from django.urls import path
 from .views import (
-    DepartamentView,
-    DepartmentDetailView
+    SkillView,
+    SkillDetailView,
+    StudentView
 )
 
 urlpatterns = [
-    path('departaments/', DepartamentView.as_view(), name='departments'),
-    path('departaments/<int:pk>/', DepartmentDetailView.as_view(), name='department-detail'),
+    path('skills/', SkillView.as_view(), name='skills'),
+    path('skills/<int:pk>/', SkillDetailView.as_view(), name='skill-detail'),
+    path('students/', StudentView.as_view(), name='students'),
 ]
