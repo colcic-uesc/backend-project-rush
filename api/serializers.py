@@ -17,17 +17,29 @@ class SkillSerializer(serializers.Serializer):
         return instance
 
 
-class StudentSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Student
-        fields = [
-            "registration",
-            "name",
-            "email",
-            "course",
-            "bio",
-            "skills"
-        ]
+class StudentSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+    registration = serializers.CharField()
+    name = serializers.CharField()
+    email = serializers.EmailField()
+    course = serializers.CharField()
+    bio = serializers.CharField()
+    skills = serializers.ListField(child=serializers.IntegerField())
+
+    def create(self, validated_data):
+        return Student(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.id = validated_data.get("id", instance.id)
+        instance.registration = validated_data.get("registration",
+                                                   instance.registration)
+        instance.name = validated_data.get("name", instance.name)
+        instance.email = validated_data.get("email", instance.email)
+        instance.course = validated_data.get("course", instance.course)
+        instance.bio = validated_data.get("bio", instance.bio)
+        instance.skills = validated_data.get("skills", instance.skills)
+
+        return instance
 
 
 # Ignorar para a primeira atividade, feita apenas para fins de estudo
