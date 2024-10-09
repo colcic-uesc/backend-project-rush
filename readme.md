@@ -1,6 +1,19 @@
 # Backend Project Rush
 Este é o README para o projeto Backend Project Rush. Aqui você encontrará instruções sobre como rodar o projeto, configurar o ambiente e as rotas disponíveis.
 
+## Configuração do Ambiente
+
+1. Crie um arquivo `.env` na raiz do projeto, verique o arquivo `.env.example`.
+2. Gere uma SECRET_KEY como o comando:
+    ```sh
+    python utils/gen_secret_key.py
+    ```
+3. Adicione as seguintes variáveis de ambiente ao arquivo `.env`:
+    ```env
+    DEBUG=True
+    SECRET_KEY=sua-chave-secreta-gerada
+    ```
+
 ## Como Rodar o Projeto
 
 1. Clone o repositório:
@@ -13,7 +26,7 @@ Este é o README para o projeto Backend Project Rush. Aqui você encontrará ins
     ```
 3. Crie e ative um ambiente virtual:
     ```sh
-    python -m venv venv
+    python3 -m venv venv
     source venv/bin/activate  # No Windows use `venv\Scripts\activate`
     ```
 4. Instale as dependências:
@@ -31,19 +44,6 @@ Este é o README para o projeto Backend Project Rush. Aqui você encontrará ins
 7. Inicie o servidor:
     ```sh
     python manage.py runserver
-    ```
-
-## Configuração do Ambiente
-
-1. Crie um arquivo `.env` na raiz do projeto, verique o arquivo `.env.example`.
-2. Gere uma SECRET_KEY como o comando:
-    ```sh
-    python utils/gen_secret_key.py
-    ```
-3. Adicione as seguintes variáveis de ambiente ao arquivo `.env`:
-    ```env
-    DEBUG=True
-    SECRET_KEY=sua-chave-secreta-gerada
     ```
 
 ## Rotas Disponíveis
