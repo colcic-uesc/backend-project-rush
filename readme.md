@@ -5,7 +5,7 @@ Este é o README para o projeto Backend Project Rush. Aqui você encontrará ins
 
 1. Clone o repositório:
     ```sh
-    git clone https://github.com/seu-usuario/backend-project-rush.git
+    git clone https://github.com/colcic-uesc/backend-project-rush.git
     ```
 2. Navegue até o diretório do projeto:
     ```sh
