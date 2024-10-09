@@ -6,7 +6,7 @@ Este é o README para o projeto Backend Project Rush. Aqui você encontrará ins
 1. Crie um arquivo `.env` na raiz do projeto, verique o arquivo `.env.example`.
 2. Gere uma SECRET_KEY como o comando:
     ```sh
-    python utils/gen_secret_key.py
+    python3 utils/gen_secret_key.py
     ```
 3. Adicione as seguintes variáveis de ambiente ao arquivo `.env`:
     ```env
@@ -14,34 +14,26 @@ Este é o README para o projeto Backend Project Rush. Aqui você encontrará ins
     SECRET_KEY=sua-chave-secreta-gerada
     ```
 
-## Como Rodar o Projeto
+## Como Rodar o projeto
 
-1. Clone o repositório:
-    ```sh
-    git clone https://github.com/colcic-uesc/backend-project-rush.git
-    ```
-2. Navegue até o diretório do projeto:
-    ```sh
-    cd backend-project-rush
-    ```
-3. Crie e ative um ambiente virtual:
+1. Crie e ative um ambiente virtual:
     ```sh
     python3 -m venv venv
     source venv/bin/activate  # No Windows use `venv\Scripts\activate`
     ```
-4. Instale as dependências:
+2. Instale as dependências:
     ```sh
     pip install -r requirements.txt
     ```
-5. Crie as migrações pendentes:
+3. Crie as migrações pendentes:
     ```sh
-    python manage.py makemigrations
+    python manage.py makemigrations api
     ```
-6. Aplique as migrações do banco de dados:
+4. Aplique as migrações do banco de dados:
     ```sh
     python manage.py migrate
     ```
-7. Inicie o servidor:
+5. Inicie o servidor:
     ```sh
     python manage.py runserver
     ```
