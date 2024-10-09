@@ -29,7 +29,7 @@ class DepartmentView(APIView):
 
     def get(self, request):
         try:
-            departments = self.query_set
+            departments = Department.objects.all()
             serializer = DepartmentSerializer(departments, many=True)
         except Exception as e:
             return Response(str(e), status=status.HTTP_404_NOT_FOUND)
@@ -74,7 +74,7 @@ class CourseView(APIView):
 
     def get(self, request):
         try:
-            courses = self.query_set
+            courses = Course.objects.all()
             serializer = CourseSerializer(courses, many=True)
         except Exception as e:
             return Response(str(e), status=status.HTTP_404_NOT_FOUND)
@@ -119,7 +119,7 @@ class SkillView(APIView):
 
     def get(self, request):
         try:
-            skills = self.query_set
+            skills = Skill.objects.all()
             serializer = SkillSerializer(skills, many=True)
         except Exception as e:
             return Response(str(e), status=status.HTTP_404_NOT_FOUND)
@@ -164,7 +164,7 @@ class StudentView(APIView):
 
     def get(self, request):
         try:
-            students = self.query_set
+            students = Student.objects.all()
             serializer = StudentSerializer(students, many=True)
         except Exception as e:
             return Response(str(e), status=status.HTTP_404_NOT_FOUND)
