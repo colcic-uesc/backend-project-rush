@@ -10,8 +10,8 @@ Este é o README para o projeto Backend Project Rush. Aqui você encontrará ins
     ```
 3. Adicione as seguintes variáveis de ambiente ao arquivo `.env`:
     ```env
-    DEBUG=True
-    SECRET_KEY=sua-chave-secreta-gerada
+    DEBUG="True"
+    SECRET_KEY="sua-chave-secreta-gerada"
     ```
 
 ## Como Rodar o projeto
