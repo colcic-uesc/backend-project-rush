@@ -25,15 +25,17 @@ Este é o README para o projeto Backend Project Rush. Aqui você encontrará ins
     ```sh
     pip install -r requirements.txt
     ```
-3. Crie as migrações pendentes:
+3. Crie uma pasta ```db```
+
+4. Crie as migrações pendentes:
     ```sh
     python manage.py makemigrations api
     ```
-4. Aplique as migrações do banco de dados:
+5. Aplique as migrações do banco de dados:
     ```sh
     python manage.py migrate
     ```
-5. Inicie o servidor:
+6. Inicie o servidor:
     ```sh
     python manage.py runserver
     ```
