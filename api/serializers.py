@@ -7,6 +7,7 @@ from .models import (
     Skill,
     Student,
     Project,
+    Log,
 )
 
 
@@ -60,4 +61,16 @@ class ProjectSerializer(serializers.ModelSerializer):
             "end_date",
             "skills",
             "professor_id",
+        ]
+
+
+class LogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Log
+        fields = [
+            "client_ip",
+            "has_jwt",
+            "request_date",
+            "request_method",
+            "request_total_time",
         ]

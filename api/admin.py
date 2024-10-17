@@ -6,7 +6,8 @@ from .models import (
     Professor,
     Skill,
     Student,
-    Project
+    Project,
+    Log
 )
 
 # Register your models here.
@@ -16,3 +17,4 @@ admin.site.register(Professor)
 admin.site.register(Skill)
 admin.site.register(Student)
 admin.site.register(Project)
+admin.site.register(Log)

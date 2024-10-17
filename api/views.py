@@ -9,7 +9,8 @@ from .models import (
     Professor,
     Skill,
     Student,
-    Project
+    Project,
+    Log
 )
 
 from .serializers import (
@@ -18,7 +19,8 @@ from .serializers import (
     ProfessorSerializer,
     SkillSerializer,
     StudentSerializer,
-    ProjectSerializer
+    ProjectSerializer,
+    LogSerializer
 )
 
 
@@ -199,4 +201,18 @@ class StudentDetailView(APIView):
                             status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
             return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class LogView(APIView):
+    query_set = Log.objects.all()
+    serializer_class = LogSerializer
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request):
+        try:
+            logs = Log.objects.all()
+            serializer = LogSerializer(logs, many=True)
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_404_NOT_FOUND)
         return Response(serializer.data, status=status.HTTP_200_OK)

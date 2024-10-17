@@ -57,3 +57,11 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Log(models.Model):
+    client_ip = models.CharField(max_length=100)
+    has_jwt = models.BooleanField()
+    request_date = models.DateTimeField()
+    request_method = models.CharField(max_length=100)
+    request_total_time = models.DurationField()

@@ -8,7 +8,8 @@ from .views import (
     SkillView,
     SkillDetailView,
     StudentView,
-    StudentDetailView
+    StudentDetailView,
+    LogView
 )
 
 urlpatterns = [
@@ -28,4 +29,6 @@ urlpatterns = [
          name='students'),
     path('students/<int:pk>/', StudentDetailView.as_view(),
          name='student-detail'),
+    path('logs/', LogView.as_view(),
+         name='logs'),
 ]
