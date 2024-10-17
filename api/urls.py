@@ -33,8 +33,8 @@ urlpatterns = [
          name='student-detail'),
     path('professors/', ProfessorView.as_view(),
          name='professors'),
-    path('professor/<int:pk>/', ProfessorDetailView.as_view()),
-
+    path('professors/<int:pk>/', ProfessorDetailView.as_view(),
+         name='professor-detail'),
     path('logs/', LogView.as_view(),
          name='logs'),
 ]
