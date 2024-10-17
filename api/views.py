@@ -326,6 +326,46 @@ class StudentDetailView(APIView):
         except NotFound:
             return Response("Student not found",
                             status=status.HTTP_404_NOT_FOUND)
+    
+class ProfessorView(APIView):
+    query_set = Professor.objects.all()
+    serializer_class = ProfessorSerializer
+    permission_classes = [permissions.AllowAny]
+    
+    def get(self, request):
+        try:
+            professors = Professor.objects.all()
+            serializer = ProfessorSerializer(professors, many=True)
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_404_NOT_FOUND)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        try:
+            serializer = ProfessorSerializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class ProfessorDetailView(APIView):
+    serializer_class = Professor
+    permission_classes = [permissions.AllowAny]
+
+    def get_object(self, pk):
+        try:
+            return Professor.objects.get(pk=pk)
+        except Professor.DoesNotExist:
+            raise NotFound()
+    
+    def get(self, request, pk):
+        try:
+            professor = self.get_object(pk)
+            serializer = ProfessorSerializer(professor)
+        except NotFound:
+            return Response("Professor not found", status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
             return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -341,6 +381,15 @@ class StudentDetailView(APIView):
             return Response("Student not found",
                             status=status.HTTP_404_NOT_FOUND)
         except Exception as e:
+    def put(self, request, pk):
+        try:
+            professor = self.get_object(pk)
+            serializer = ProfessorSerializer(professor, data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+        except NotFound:
+            return Response("Professor not found", status=status.HTTP_404_NOT_FOUND)
+        except Exception as e: 
             return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -355,6 +404,25 @@ class StudentDetailView(APIView):
             return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+            professor = self.get_object(pk)
+            professor.delete()
+        except NotFound:
+            return Response("Professor not found", status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
+        return Response("Professor deleted successfully", status=status.HTTP_204_NO_CONTENT)
+
+    def patch(self, request, pk):
+        try:
+            professor = self.get_object(pk)
+            serializer = ProfessorSerializer(professor, data=request.data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+        except NotFound:
+            return Response("Professor not found", status=status.HTTP_404_NOT_FOUND)
+        except Exception as e: 
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 class LogView(APIView):
     query_set = Log.objects.all()
