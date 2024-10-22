@@ -63,6 +63,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'api.middleware.log.LogMiddleware',
+    'api.middleware.app.AppMiddleware',
 ]
 
 ROOT_URLCONF = 'UescColcicAPI.urls'
