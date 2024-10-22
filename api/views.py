@@ -440,6 +440,89 @@ class ProfessorDetailView(APIView):
                         status=status.HTTP_204_NO_CONTENT)
 
 
+class ProjectView(APIView):
+    query_set = Project.objects.all()
+    serializer_class = ProjectSerializer
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request):
+        try:
+            projects = Project.objects.all()
+            serializer = ProjectSerializer(projects, many=True)
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_404_NOT_FOUND)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        try:
+            serializer = ProjectSerializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class ProjectDetailView(APIView):
+    serializer_class = ProjectSerializer
+    permission_classes = [permissions.AllowAny]
+
+    def get_object(self, pk):
+        try:
+            return Project.objects.get(pk=pk)
+        except Project.DoesNotExist:
+            raise NotFound()
+
+    def get(self, request, pk):
+        try:
+            project = self.get_object(pk)
+            serializer = ProjectSerializer(project)
+        except NotFound:
+            return Response("Project not found",
+                            status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def put(self, request, pk):
+        try:
+            project = self.get_object(pk)
+            serializer = ProjectSerializer(project, data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+        except NotFound:
+            return Response("Project not found",
+                            status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def patch(self, request, pk):
+        try:
+            project = self.get_object(pk)
+            serializer = ProjectSerializer(project, data=request.data,
+                                           partial=True)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+        except NotFound:
+            return Response("Project not found",
+                            status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def delete(self, request, pk):
+        try:
+            project = self.get_object(pk)
+            project.delete()
+        except NotFound:
+            return Response("Project not found",
+                            status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 class LogView(APIView):
     query_set = Log.objects.all()
     serializer_class = LogSerializer
