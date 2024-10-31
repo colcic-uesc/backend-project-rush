@@ -27,7 +27,7 @@ from .serializers import (
 class DepartmentView(APIView):
     query_set = Department.objects.all()
     serializer_class = DepartmentSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
         try:
@@ -49,7 +49,7 @@ class DepartmentView(APIView):
 
 class DepartmentDetailView(APIView):
     serializer_class = DepartmentSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self, pk):
         try:
@@ -110,7 +110,7 @@ class DepartmentDetailView(APIView):
 class CourseView(APIView):
     query_set = Course.objects.all()
     serializer_class = CourseSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
         try:
@@ -132,7 +132,7 @@ class CourseView(APIView):
 
 class CourseDetailView(APIView):
     serializer_class = CourseSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self, pk):
         try:
@@ -193,7 +193,7 @@ class CourseDetailView(APIView):
 class SkillView(APIView):
     query_set = Skill.objects.all()
     serializer_class = SkillSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
         try:
@@ -215,7 +215,7 @@ class SkillView(APIView):
 
 class SkillDetailView(APIView):
     serializer_class = SkillSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self, pk):
         try:
@@ -276,7 +276,7 @@ class SkillDetailView(APIView):
 class StudentView(APIView):
     query_set = Student.objects.all()
     serializer_class = StudentSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
         try:
@@ -298,7 +298,7 @@ class StudentView(APIView):
 
 class StudentDetailView(APIView):
     serializer_class = StudentSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self, pk):
         try:
@@ -359,7 +359,7 @@ class StudentDetailView(APIView):
 class ProfessorView(APIView):
     query_set = Professor.objects.all()
     serializer_class = ProfessorSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
         try:
@@ -381,7 +381,7 @@ class ProfessorView(APIView):
 
 class ProfessorDetailView(APIView):
     serializer_class = ProfessorSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self, pk):
         try:
@@ -443,7 +443,7 @@ class ProfessorDetailView(APIView):
 class ProjectView(APIView):
     query_set = Project.objects.all()
     serializer_class = ProjectSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
         try:
@@ -465,7 +465,7 @@ class ProjectView(APIView):
 
 class ProjectDetailView(APIView):
     serializer_class = ProjectSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_object(self, pk):
         try:
@@ -526,7 +526,7 @@ class ProjectDetailView(APIView):
 class LogView(APIView):
     query_set = Log.objects.all()
     serializer_class = LogSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
         try:
