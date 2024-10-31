@@ -17,6 +17,11 @@ class SignUpView(APIView):
     def post(self, request):
         try:
             data = request.data
+
+            if data['password'] != data['confirm_password']:
+                return Response("Passwords do not match",
+                                status=status.HTTP_400_BAD_REQUEST)
+
             user = User.objects.create_user(
                 username=data['username'],
                 password=data['password'],
@@ -28,8 +33,12 @@ class SignUpView(APIView):
         except IntegrityError:
             return Response("Username already exists",
                             status=status.HTTP_409_CONFLICT)
+        except KeyError:
+            return Response("Missing required fields",
+                            status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
             return Response(str(e), status=status.HTTP_400_BAD_REQUEST)
+
         return Response("User created successfully",
                         status=status.HTTP_201_CREATED)
 
